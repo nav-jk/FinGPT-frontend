@@ -85,25 +85,25 @@ const SparkleIcon = () => (
 
 // ── thinking cycle label ──────────────────────────────────────────────────────
 const THINKING_LABELS = [
-  "Reviewing market data…",
-  "Cross-referencing sources…",
-  "Synthesising insights…",
+ "Thinking",
+ "Searching"
 ];
 
 function TypingIndicator() {
   const [labelIndex, setLabelIndex] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setLabelIndex(prev => (prev + 1) % THINKING_LABELS.length);
+    const id = setInterval(() => {
+      setLabelIndex(i => (i + 1) % THINKING_LABELS.length);
     }, 2200);
-    return () => clearInterval(interval);
+
+    return () => clearInterval(id);
   }, []);
 
   return (
-    <div className="typing-indicator">
-      <span /><span /><span />
-      <span className="typing-label" key={labelIndex}>{THINKING_LABELS[labelIndex]}</span>
+    <div className="thinking-indicator">
+      <div className="thinking-spinner" />
+      <span>{THINKING_LABELS[labelIndex]}</span>
     </div>
   );
 }
